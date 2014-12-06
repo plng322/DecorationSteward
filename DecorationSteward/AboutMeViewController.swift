@@ -18,6 +18,8 @@ class AboutMeViewController: UIViewController
     {
         super.viewDidLoad()
 
+    
+        
         self.addLogoView();
         self.addCopyrightView();
     }
@@ -59,6 +61,7 @@ class AboutMeViewController: UIViewController
         self.view.addSubview(logoLabel);
     }
     
+    
     func addCopyrightView()
     {
         let viewSize:CGSize = self.view.frame.size;
@@ -87,5 +90,5 @@ class AboutMeViewController: UIViewController
         self.view.addSubview(copyrightLabel);
     }
     
-
+    
 }

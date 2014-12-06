@@ -8,9 +8,9 @@
 
 import UIKit
 
-class CatagoryMinorManageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate {
+class CatagoryMinorManageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var minorCategoryTableView: UITableView!
+    var minorCategoryTableView: UITableView = UITableView()
     
     var primeCategorySelected: String = String() // 前个页面选中的大类名，本界面据此显示响应小类名
     var minorCategorys: Array<String> = Array<String>()
@@ -18,13 +18,21 @@ class CatagoryMinorManageViewController: UIViewController, UITableViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.addTableView()
         
         getMinorCategory()
+    }
+    
+    func addTableView() {
+        let tableViewFrame = CGRectMake(0, 60, self.view.frame.width, self.view.frame.height)
+        self.minorCategoryTableView = UITableView(frame: tableViewFrame, style: UITableViewStyle.Plain)
+        
+        self.minorCategoryTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: self.cellReuseIdentifier)
         
         self.minorCategoryTableView.dataSource = self
         self.minorCategoryTableView.delegate = self
-        self.navigationController?.delegate = self
+        
+        self.view.addSubview(self.minorCategoryTableView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,10 +87,5 @@ class CatagoryMinorManageViewController: UIViewController, UITableViewDataSource
             var destinationView: CategoryMinorAddViewController = segue.destinationViewController as CategoryMinorAddViewController
             destinationView.setValue(self.primeCategorySelected, forKey: "primeCategorySelected")
         }
-    }
-    
-    // 导航回来时刷新数据
-    func navigationController(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
-        reloadData()
     }
 }
