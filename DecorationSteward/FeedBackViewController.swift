@@ -103,6 +103,8 @@ class FeedBackViewController: UIViewController, MFMailComposeViewControllerDeleg
         
         feedbackScrollView_.addSubview(feedbackTextView_);
         feedbackTextView_.becomeFirstResponder();
+        
+        UINavigationBar.appearance().titleTextAttributes =   [NSForegroundColorAttributeName:UIColor.whiteColor(),NSFontAttributeName:UIFont(name: "AvenirNextCondensed-DemiBold", size: 22.0)!]
     }
     
     //添加Label
